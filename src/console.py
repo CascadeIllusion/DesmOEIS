@@ -1,4 +1,5 @@
 import sys
+from parse import *
 
 
 def main():
@@ -16,8 +17,32 @@ def main():
     while True:
         cmd = input()
 
+        if cmd == "help":
+            pass
+
         if cmd == "exit":
             sys.exit()
+
+        # Multiple commands are comma separated
+        cmds = cmd.split(', ')
+        cmds[-1] = cmds[-1].replace(',', '')
+
+        if not cmds[0].startswith("id"):
+            print("First argument must be id.")
+            continue
+
+        for i in cmds:
+            i = i.split("=")
+
+            cmd = i[0]
+            arg = i[1]
+
+            switch = {
+                "id": parse_id,
+                "name": parse_name,
+            }
+            func = switch.get(cmd, lambda x: None)
+            func(arg)
 
 
 if __name__ == '__main__':
