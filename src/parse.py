@@ -18,6 +18,28 @@ def parse_id(id=""):
     url = f"https://oeis.org/search?q=id:{id}&fmt=text"
     r = requests.get(url)
 
+    text = str.splitlines(r.text)
+
+    parse_integers(text)
+
+
+def parse_integers(text):
+
+    rows = []
+
+    for line in text:
+        if line.startswith('%S') or line.startswith('%T') or line.startswith('%U'):
+            # integers start 11 characters into the line
+            row = line[11:]
+            row = row.split(',')
+            rows.append(row)
+
+    # Flatten all three rows into one list
+    rows = [row for integer in rows for row in integer]
+
+    # Remove empty elements resulting from commas at the end of the %S and %T rows
+    rows = list(filter(None, rows))
+
 
 def parse_name(cmd=""):
     print("PARSENAME")
