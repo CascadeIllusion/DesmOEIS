@@ -1,7 +1,8 @@
 import requests
+from sequence import *
 
 
-def parse_id(id=""):
+def parse_id(id, sequence):
 
     # Remove the preceding A if included
     id = id.replace('A', '')
@@ -15,15 +16,17 @@ def parse_id(id=""):
     # Add A at the beginning of the query
     id = 'A' + id
 
+    sequence.id = id
+
     url = f"https://oeis.org/search?q=id:{id}&fmt=text"
     r = requests.get(url)
 
     text = str.splitlines(r.text)
 
-    parse_integers(text)
+    parse_integers(text, sequence)
 
 
-def parse_integers(text):
+def parse_integers(text, sequence):
 
     rows = []
 

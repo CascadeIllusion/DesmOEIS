@@ -1,5 +1,6 @@
 import sys
 from parse import *
+from sequence import *
 
 
 def main():
@@ -31,6 +32,8 @@ def main():
             print("First argument must be id.")
             continue
 
+        sequence = Sequence()
+
         for i in cmds:
             i = i.split("=")
 
@@ -42,7 +45,7 @@ def main():
                 "name": parse_name,
             }
             func = switch.get(cmd, lambda x: None)
-            func(arg)
+            func(arg, sequence)
 
 
 if __name__ == '__main__':
