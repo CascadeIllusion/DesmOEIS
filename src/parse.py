@@ -43,6 +43,8 @@ def parse_integers(text, sequence):
     # Remove empty elements resulting from commas at the end of the %S and %T rows
     rows = list(filter(None, rows))
 
+    sequence.integers = rows
+
 
 def parse_name(cmd=""):
     print("PARSENAME")

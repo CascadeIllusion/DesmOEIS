@@ -10,3 +10,11 @@ class Sequence():
     @id.setter
     def id(self, id):
         self._id = id
+
+    @property
+    def integers(self):
+        return self._integers
+
+    @integers.setter
+    def integers(self, integers):
+        self._integers = integers
