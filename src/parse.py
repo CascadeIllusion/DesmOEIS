@@ -51,10 +51,13 @@ def parse_integers(text, sequence):
 
 def parse_name(name, sequence):
 
-    # If the name is longer than 1 character then subscript everything else
-    # Otherwise each character will be treated as its own variable
     if len(name) > 1:
-        name = "_".join(name)
+        print("Variable names must be one character only.")
+        return
+
+    if str.isdecimal(name) or name == 'e':
+        print("Numeric names and the constant e (2.71828...) are not allowed.")
+        return
 
     name = f"{name}="
 
