@@ -11,12 +11,29 @@ def create_expression(input, sequence, func):
     # Add another placeholder comment below the expression to allow for further expressions
     graph = graph.replace("<!-- PLACEHOLDER -->", f"{expr} \n <!-- PLACEHOLDER -->")
 
+    sequence.graph = graph
+
+    write_graph(sequence, graph)
+
+
+def write_graph(sequence, graph):
+
     dir = "../graphs/"
     if not os.path.exists(dir):
         os.makedirs(dir)
     out_graph = open(f"{dir}{sequence.id}.html", "w")
     out_graph.write(graph)
-    sequence.graph = graph
+
+
+def attach_name(input, sequence):
+
+    graph = sequence.graph
+
+    ind = graph.find(str(sequence.integers).replace("'", ""))
+    graph = graph[:ind] + sequence.name + graph[ind:]
+
+    write_graph(sequence, graph)
+
 
 def create_desmos_list(integers):
 

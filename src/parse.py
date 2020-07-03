@@ -49,5 +49,15 @@ def parse_integers(text, sequence):
     create_expression(rows, sequence, create_desmos_list)
 
 
-def parse_name(cmd=""):
-    print("PARSENAME")
+def parse_name(name, sequence):
+
+    # If the name is longer than 1 character then subscript everything else
+    # Otherwise each character will be treated as its own variable
+    if len(name) > 1:
+        name = "_".join(name)
+
+    name = f"{name}="
+
+    sequence.name = name
+
+    attach_name(name, sequence)

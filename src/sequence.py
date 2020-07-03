@@ -26,3 +26,11 @@ class Sequence():
     @graph.setter
     def graph(self, graph):
         self._graph = graph
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name

@@ -1,7 +1,7 @@
 import sys
 from parse import *
 from sequence import *
-
+from desmos import *
 
 def main():
 
