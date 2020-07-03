@@ -22,6 +22,10 @@ def parse_id(id, sequence):
     url = f"https://oeis.org/search?q=id:{id}&fmt=text"
     r = requests.get(url)
 
+    if "No results." in r.text:
+        print("Invalid id.")
+        return
+
     text = str.splitlines(r.text)
 
     parse_integers(text, sequence)
