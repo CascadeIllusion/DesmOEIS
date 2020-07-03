@@ -75,5 +75,20 @@ class TestIntegerParsing(unittest.TestCase):
         self.assertEqual(self.ref_list, sequence.integers)
 
 
+class TestNameParsing(unittest.TestCase):
+
+    @property
+    def ref_name(self):
+        self._ref_name = "t_e_s_t="
+        return self._ref_name
+
+    def test_parse_name(self):
+        sequence = Sequence()
+        id = 'A000045'
+        parse_id(id, sequence)
+        parse_name("test", sequence)
+        self.assertEqual(self.ref_name, sequence.name)
+
+
 if __name__ == '__main__':
     unittest.main()
