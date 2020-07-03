@@ -18,3 +18,11 @@ class Sequence():
     @integers.setter
     def integers(self, integers):
         self._integers = integers
+
+    @property
+    def graph(self):
+        return self._graph
+
+    @graph.setter
+    def graph(self, graph):
+        self._graph = graph

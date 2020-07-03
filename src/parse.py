@@ -46,7 +46,7 @@ def parse_integers(text, sequence):
 
     sequence.integers = rows
 
-    create_graph(rows, sequence, create_desmos_list)
+    create_expression(rows, sequence, create_desmos_list)
 
 
 def parse_name(cmd=""):
