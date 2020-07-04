@@ -1,7 +1,8 @@
 import sys
-from parse import *
-from sequence import *
+from parsing import *
 from desmos import *
+from sequence import Sequence
+
 
 def main():
 
@@ -32,20 +33,31 @@ def main():
             print("First argument must be id.")
             continue
 
-        sequence = Sequence()
+        args = dict()
 
         for i in cmds:
             i = i.split("=")
 
             cmd = i[0]
-            arg = i[1]
+            value = i[1]
 
-            switch = {
-                "id": parse_id,
-                "name": parse_name,
-            }
-            func = switch.get(cmd, lambda x: None)
-            func(arg, sequence)
+            args[cmd] = value
+
+        id = parse_id(args)
+
+        results = find_id(id)
+
+        if results:
+            sequence = Sequence(id)
+            sequence.args = args
+            sequence.results = results
+        else:
+            print("Invalid id.")
+            continue
+
+        sequence.integers = parse_integers(sequence)
+
+        create_expression(sequence.integers, sequence, create_desmos_list)
 
 
 if __name__ == '__main__':

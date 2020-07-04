@@ -13,26 +13,11 @@ def create_expression(input, sequence, func):
 
     sequence.graph = graph
 
-    write_graph(sequence, graph)
-
-
-def write_graph(sequence, graph):
-
     dir = "../graphs/"
     if not os.path.exists(dir):
         os.makedirs(dir)
     out_graph = open(f"{dir}{sequence.id}.html", "w")
     out_graph.write(graph)
-
-
-def attach_name(input, sequence):
-
-    graph = sequence.graph
-
-    ind = graph.find(str(sequence.integers).replace("'", ""))
-    graph = graph[:ind] + sequence.name + graph[ind:]
-
-    write_graph(sequence, graph)
 
 
 def create_desmos_list(integers):
