@@ -57,7 +57,20 @@ def main():
 
         sequence.integers = parse_integers(sequence)
 
-        create_expression(sequence.integers, sequence, create_desmos_list)
+        name = sequence.args.get("name")
+
+        if name:
+            if len(name) > 1:
+                print("Variable names must be one character only.")
+                continue
+
+            if str.isdecimal(name) or name == 'e':
+                print("Numeric names and the constant e (2.71828...) are not allowed.")
+                continue
+
+        sequence.name = name
+
+        create_expression(sequence, create_desmos_list)
 
 
 if __name__ == '__main__':

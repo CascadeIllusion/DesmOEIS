@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Output</title>
+    <link rel="stylesheet" type="text/css" href="../resources/desmos_graph_style.css">
+</head>
+
+<body>
+
+<script src="https://www.desmos.com/api/v1.5/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+
+<div id="calculator" style="width: 100%; height: 100%;"></div>
+
+<script>
+  var elt = document.getElementById('calculator');
+  var calculator = Desmos.GraphingCalculator(elt);
+  calculator.setExpression({ id: 'graph1', latex:"b=[1, 2, 3, 5, 8, 15, 26, 48, 87, 161, 299, 563, 1066, 2030, 3885, 7464, 14384, 27779, 53782, 104359, 202838, 394860, 769777, 1502603, 2936519, 5744932, 11249805, 22048769, 43248623, 84894767, 166758141, 327770275, 644627310, 1268491353, 2497412741]" }); 
+ <!-- PLACEHOLDER -->
+</script>
+
+</body>
+
+</html>

@@ -30,3 +30,11 @@ class Sequence():
     @results.setter
     def results(self, results):
         self._results = results
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
