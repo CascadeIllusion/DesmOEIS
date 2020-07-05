@@ -68,4 +68,22 @@ def parse_integers(sequence):
     # Remove empty elements resulting from commas at the end of the %S and %T rows
     rows = list(filter(None, rows))
 
+    trim = sequence.args.get("trim")
+
+    if trim:
+        trim = trim.split(":")
+        print(trim)
+        if trim[0] is "":
+            trim[0] = '0'
+        if trim[1] is "":
+            trim[1] = len(rows)
+        trim = list(map(int, trim))
+        start = trim[0]
+        end = trim[1]
+        if len(trim) == 3:
+            step = trim[2]
+            rows = rows[start:end:step]
+        else:
+            rows = rows[start:end]
+
     return rows
