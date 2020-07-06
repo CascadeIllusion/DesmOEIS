@@ -71,16 +71,31 @@ def parse_integers(sequence):
     trim = sequence.args.get("trim")
 
     if trim:
+        if ":" not in trim:
+            print("Trim argument missing colons ( : ).")
+            return
         trim = trim.split(":")
-        print(trim)
+        if not (trim[0] is "" or trim[1] is ""):
+            for i in trim:
+                if i.isdigit() and trim[0] >= trim[1]:
+                    print("Start value must be less than the end value.")
+                    return
         if trim[0] is "":
             trim[0] = '0'
         if trim[1] is "":
             trim[1] = len(rows)
+        for i in trim:
+            i = str(i)
+            if not i.isdigit():
+                print("Invalid input for trim argument.")
+                return
         trim = list(map(int, trim))
         start = trim[0]
         end = trim[1]
         if len(trim) == 3:
+            if trim[2] is 0:
+                print("Step value cannot be zero.")
+                return
             step = trim[2]
             rows = rows[start:end:step]
         else:
