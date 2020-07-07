@@ -1,6 +1,9 @@
 # DesmOEIS
 A command-line utility for converting OEIS (On-Line Encyclopedia of Integer Sequences) sequences into Desmos lists.
 
+## Installation
+`pip install desmoeis`
+
 ## Running
 `cd` to `<path>/DesmOEIS/src`, where `<path>` is the path to your DesmOEIS folder. Then execute `python console.py`.
 
