@@ -39,7 +39,7 @@ def parse_integers(sequence):
 
     rows = []
 
-    if sequence.args.get("ext") == "true":
+    if sequence.args.get("ext") == "Y":
 
         b_id = sequence.id.replace('A', 'b')
         url = f"https://oeis.org/{sequence.id}/{b_id}.txt"

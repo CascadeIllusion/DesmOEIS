@@ -1,4 +1,5 @@
 import sys
+import webbrowser
 from parsing import *
 from desmos import *
 from sequence import Sequence
@@ -14,13 +15,48 @@ def main():
       "Type help for a list of all valid commands. \n" \
       "Type exit to close the application. \n" \
 
+    help = \
+        "\nSyntax: (Command Name)=(Argument)\n\n" \
+        "id: Attempts to convert an OEIS id argument into a Desmos list. \n" \
+        "The \"A\" is optional, and trailing zeros may be excluded.\n\n" \
+        \
+        "name: Assigns the resulting Desmos list to a variable with the given name. \n" \
+        "Names must be exactly one letter character (except \"e\"), no numbers or special characters.\n\n" \
+        \
+        "trim: Filters a list using Python-style slicing syntax. For A:B:C:\n" \
+        "A is the starting index (inclusive), default 0.\n" \
+        "B is the ending index (exclusive), default is the list length.\n" \
+        "C is a step value that is used to skip every C elements, default is 1 (don't skip anything).\n\n" \
+        \
+        "ext: Pass Y to this to output the extended version of the OEIS sequence.\n" \
+        "WARNING: Passing an entire extended sequence this way is usually not a good idea, as such\n" \
+        "sequences can be hundreds of elements long, and can cause your browser to hang. You may want\n" \
+        "to combine this with trimming syntax to reduce the number of elements.\n\n" \
+        \
+        "view: Opens the .html file containing the last converted sequence since starting the program. \n" \
+        "Does not work if used before converting a sequence.\n\n" \
+        \
+        "help: View a list of all valid commands.\n\n" \
+        \
+        "exit: Closes the application." \
+
     print(intro)
+
+    file = None
 
     while True:
         cmd = input()
 
         if cmd == "help":
-            pass
+            print(help)
+            continue
+
+        if cmd == "view":
+            if file is None:
+                print("No sequence converted yet.")
+                continue
+            webbrowser.open(f"file://{os.path.realpath(file)}")
+            continue
 
         if cmd == "exit":
             sys.exit()
@@ -70,7 +106,9 @@ def main():
 
         sequence.name = name
 
-        create_expression(sequence, create_desmos_list)
+        file = create_expression(sequence, create_desmos_list)
+
+        print("Sequence converted successfully! \n")
 
 
 if __name__ == '__main__':

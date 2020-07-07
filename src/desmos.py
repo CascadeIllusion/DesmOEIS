@@ -16,8 +16,11 @@ def create_expression(sequence, func):
     dir = "../graphs/"
     if not os.path.exists(dir):
         os.makedirs(dir)
-    out_graph = open(f"{dir}{sequence.id}.html", "w")
+    filename = f"{dir}{sequence.id}.html"
+    out_graph = open(filename, "w")
     out_graph.write(graph)
+
+    return filename
 
 
 def create_desmos_list(sequence):
