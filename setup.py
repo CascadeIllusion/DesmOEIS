@@ -8,5 +8,5 @@ setup(name='DesmOEIS',
       author='CascadeIllusion',
       author_email='patrick77000@gmail.com',
       url='https://github.com/CascadeIllusion/DesmOEIS',
-      packages=['src', 'tests'],
+      packages=['DesmOEIS', 'tests'],
      )
