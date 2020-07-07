@@ -75,7 +75,7 @@ class TestIntegerParsing(unittest.TestCase):
     # Use a different sequence because most extended sequences are too big to reasonably fit
     def test_parse_integers_ext(self):
 
-        args = {"ext": "true"}
+        args = {"ext": "Y"}
 
         id = "A000047"
 
